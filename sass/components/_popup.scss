@@ -1,0 +1,117 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($color: $color-black, $alpha: 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    backdrop-filter: blur(10px);
+
+    @include respond(tab-port) {
+        // height: 90vh;
+        // @include center-horizontal-vertical;
+    }
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            position: absolute;
+            top: 2.5rem;
+            right: 3rem;
+            line-height: 1;
+            transition: all 0.3s;
+
+            @include respond(tab-port) {
+                top: 1rem;
+                right: 1.5rem;
+            }
+        }
+        &:hover {
+            color: $color-primary;
+        }
+    }
+
+    &__content {
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color: $color-black, $alpha: 0.2);
+        border-radius: 3px;
+        @include center-horizontal-vertical;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+        transition: all 0.4s 0.2s;
+        overflow-y: scroll;
+
+        @include respond(tab-port) {
+            // margin: 2rem auto;
+            display: inline-block;
+            // height: 90%;
+            width: 80%;
+            padding: 4rem;
+        }
+    }
+
+    &__left {
+        width: 33.33%;
+        display: table-cell;
+        @include respond(tab-port) {
+            width: 100%;
+            display: inline-block;
+        }
+    }
+    &__right {
+        width: 66.666%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+        @include respond(tab-port) {
+            display: inline;
+        }
+    }
+    &__img {
+        display: block;
+        width: 100%;
+        @include respond(tab-port) {
+            width: 45%;
+            border-radius: 4px;
+            float: left;
+            &:last-child{
+                float: right;
+            }
+            &:not(:last-child) {
+                margin-right: 1rem;
+            }
+        }
+    }
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+        column-count: 2;
+        column-gap: 4rem;
+        column-rule: 1px solid $color-grey-light-2;
+        hyphens: auto;
+        @include respond(tab-port) {
+            column-count: 1;
+        }
+    }
+}
